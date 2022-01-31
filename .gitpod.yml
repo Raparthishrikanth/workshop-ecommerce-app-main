@@ -1,0 +1,14 @@
+image:
+  file: .gitpod.Dockerfile
+tasks:
+  - name: setup
+    before: |
+      mvn install -f backend/pom.xml -DskipTests
+      npm --prefix ui install
+      npm --prefix ui run build
+    command: |
+      gp open README.md
+ports:
+  - port: 8080
+    onOpen: open-browser
+    visibility: public
